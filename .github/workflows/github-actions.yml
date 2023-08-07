@@ -34,11 +34,11 @@ jobs:
         with:
           context: .
           platforms: linux/amd64
-          build-args: VERSION_NUM=1.0-SNAPSHOT.${{ env.GITHUB_RUN_NUMBER }}
+          build-args: VERSION_NUM=1.0-SNAPSHOT.${{ github.GITHUB_RUN_NUMBER }}
           push: true
           tags: |
             ghcr.io/user/app:latest
-            ghcr.io/user/app:1.0.${{ env.GITHUB_RUN_NUMBER }} 
+            ghcr.io/user/app:1.0.${{ github.GITHUB_RUN_NUMBER }} 
 
   publish:
       needs: build
