@@ -24,7 +24,7 @@ RUN nvm test
 
 FROM openjdk:22-slim as runner
 
-ARG IMAGE=`${NAME}-${VERSION_NUM}.jar`
+ARG IMAGE=${NAME}-${VERSION_NUM}.jar
 
 COPY --from=builder /user/src/app/target/$IMAGE /usr/src/app/$IMAGE
 
