@@ -9,7 +9,7 @@ COPY src/ src/
 
 
 ARG PATCH_VERSION=PATCH_VERSION
-ARG VERSION_NUM=`$(mvn help:evaluate -Dexpression=project.name | grep "^[^\[]").${PATCH_VERSION}`
+ARG VERSION_NUM=$(mvn help:evaluate -Dexpression=project.name | grep "^[^\[]").${PATCH_VERSION}
 
 RUN mvn versions:set -DnewVersion=${VERSION_NUM}
 
@@ -25,8 +25,6 @@ RUN nvm test
 
 FROM openjdk:22-slim as runner
 
-ARG IMAGE=${NAME}-${VERSION_NUM}.jar
+COPY --from=builder /user/src/app/target/*.jar /usr/src/app/
 
-COPY --from=builder /user/src/app/target/$IMAGE /usr/src/app/$IMAGE
-
-CMD java -jar target/${IMAGE}
+CMD java -jar /user/src/app/*.jar
