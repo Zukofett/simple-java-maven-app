@@ -41,5 +41,6 @@ jobs:
 
   publish:
       needs: build
+      runs-on: ubuntu-latest      
       steps:
         - run: echo "deploy from here or from another job?"
