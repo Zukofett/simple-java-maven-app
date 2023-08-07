@@ -8,8 +8,7 @@ COPY pom.xml ./
 COPY src/ src/
 
 
-ARG PATCH_VERSION=PATCH_VERSIONARG VERSION_NUM=$(mvn help:evaluate -Dexpression=project.name | grep "^[^\[]").${PATCH_VERSION}
-ARG VERSION_NUM=${$(mvn help:evaluate -Dexpression=project.name | grep "^[^\[]")}.${PATCH_VERSION}
+ARG VERSION_NUM=${PATCH_VERSION}
 RUN mvn versions:set -DnewVersion=${VERSION_NUM}
 
 RUN mvn -B -DskipTests clean package
