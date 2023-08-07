@@ -34,6 +34,7 @@ jobs:
         with:
           context: .
           platforms: linux/amd64
+          build-args: PATCH_VERSION=${{ github.GITHUB_RUN_NUMBER }}
           push: true
           tags: |
             ghcr.io/user/app:latest
