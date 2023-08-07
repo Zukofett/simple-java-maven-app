@@ -22,7 +22,7 @@ COPY --from=builder /usr/src/app/ .
 
 RUN nvm test
 
-FROM java:8 as runner
+FROM openjdk:22-slim as runner
 
 ARG IMAGE=`${NAME}-${VERSION_NUM}.jar`
 
