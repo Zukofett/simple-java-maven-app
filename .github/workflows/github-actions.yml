@@ -37,8 +37,8 @@ jobs:
           build-args: VERSION_NUM=1.0-SNAPSHOT.${{ github.run_number }}
           push: true
           tags: |
-            ghcr.io/user/app:latest
-            ghcr.io/user/app:1.0.${{ github.run_number }}
+            ghcr.io/${{ github.repository_owner }}/simple-java-maven-app:latest
+            ghcr.io/${{ github.repository_owner }}/simple-java-maven-app:1.0.${{ github.run_number }}
 
   publish:
       needs: build
