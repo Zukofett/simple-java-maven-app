@@ -6,7 +6,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
-
+  CURR_VERSION: 1.0.${{ github.run_number }}
 jobs:
   build:
 
@@ -37,8 +37,8 @@ jobs:
           build-args: VERSION_NUM=1.0-SNAPSHOT.${{ github.run_number }}
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/simple-java-maven-app:latest
-            ghcr.io/${{ github.repository_owner }}/simple-java-maven-app:1.0.${{ github.run_number }}
+            ${{ env.REGISTRY }}/user/${{ env.IMAGE_NAME }}:latest
+            ${{ env.REGISTRY }}/user/${{ env.IMAGE_NAME }}:${{ env.CURR_VERSION }}
 
   publish:
       needs: build
