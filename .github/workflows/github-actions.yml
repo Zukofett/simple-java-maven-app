@@ -41,4 +41,5 @@ jobs:
 
   publish:
       needs: build
-      - run: echo "deploy from here or from another job?"
+      steps:
+        - run: echo "deploy from here or from another job?"
