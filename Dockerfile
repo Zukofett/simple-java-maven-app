@@ -7,12 +7,13 @@ WORKDIR /usr/src/app
 COPY pom.xml ./
 COPY src/ src/
 
+
+ARG PATCH_VERSION=PATCH_VERSION
+ARG VERSION_NUM=`$(mvn help:evaluate -Dexpression=project.name | grep "^[^\[]").${PATCH_VERSION}`
+
+RUN mvn versions:set -DnewVersion=${VERSION_NUM}
+
 RUN mvn -B -DskipTests clean package
-
-ENV PATCH_VERSION=PATCH_VERSION
-ENV NAME=`$(mvn help:evaluate -Dexpression=project.name | grep "^[^\[]")`
-ENV VERSION_NUM=`$(mvn help:evaluate -Dexpression=project.name | grep "^[^\[]").${PATCH_VERSION}`
-
 
 FROM maven:latest as unit-tests
 
