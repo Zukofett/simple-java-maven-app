@@ -40,8 +40,8 @@ jobs:
           build-args: VERSION_NUM=1.0-SNAPSHOT.${{ github.run_number }}
           push: true
           tags: |
-            ${{ env.REGISTRY }}/user/${{ env.IMAGE_NAME }}:latest
-            ${{ env.REGISTRY }}/user/${{ env.IMAGE_NAME }}:${{ env.CURR_VERSION }}
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.CURR_VERSION }}
 
   publish:
       needs: build
