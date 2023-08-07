@@ -23,6 +23,6 @@ RUN nvm test
 
 FROM openjdk:22-slim as runner
 
-COPY --from=builder /user/src/app/target/*.jar /usr/src/app/
+COPY --from=builder target/*.jar ./
 
-CMD java -jar /user/src/app/*.jar
+CMD java -jar ./*.jar
